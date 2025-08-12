@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Predicción de Enfermedad Cardíaca</h3>
+<form method="post" class="row g-3">
+  <div class="col-md-3">
+    <label class="form-label">Modelo</label>
+    <select class="form-select" name="model">
+      <option value="logreg" {% if selected_model=='logreg' %}selected{% endif %}>Logistic Regression</option>
+      <option value="knn" {% if selected_model=='knn' %}selected{% endif %}>KNN</option>
+    </select>
+  </div>
+  {% for col in feature_columns %}
+  <div class="col-md-3">
+    <label class="form-label">{{ col }}</label>
+    <input type="number" step="any" class="form-control" name="{{ col }}" required>
+  </div>
+  {% endfor %}
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Predecir</button>
+  </div>
+</form>
+{% if result is not none %}
+<div class="alert alert-info mt-4">
+  <strong>Riesgo:</strong> {{ result }} — <strong>Probabilidad:</strong> {{ probability }}%
+</div>
+{% endif %}
+{% endblock %}

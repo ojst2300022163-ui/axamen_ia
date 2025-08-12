@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Reentrenamiento de Modelos</h3>
+<p>Casos base en `heart.csv`: <strong>{{ base_count }}</strong></p>
+<p>Casos adicionales etiquetados en BD: <strong>{{ extra_labeled_count }}</strong></p>
+<form method="post">
+  <button class="btn btn-warning" type="submit">Reentrenar con todos los datos</button>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Métricas de Modelos</h3>
+<div class="row">
+  {% for name, m in metrics.items() %}
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ name }}</h5>
+        <ul>
+          <li>Accuracy: {{ '%.3f'|format(m.accuracy) }}</li>
+          <li>Precision: {{ '%.3f'|format(m.precision) }}</li>
+          <li>Recall: {{ '%.3f'|format(m.recall) }}</li>
+        </ul>
+        <img src="{{ m.confusion_matrix_image }}" class="img-fluid" alt="Matriz de confusión">
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
